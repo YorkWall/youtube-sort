@@ -91,8 +91,8 @@ async function getVideoDetails(id) {
 
   try {
     const playerResponse = jsonArray.find(item => Boolean(item.playerResponse)).playerResponse;
-    const viewCount = playerResponse.microformat.playerMicroformatRenderer.viewCount;
-    return { ...playerResponse.videoDetails, viewCount };
+    const isUnlisted = playerResponse.microformat.playerMicroformatRenderer.isUnlisted;
+    return { ...playerResponse.videoDetails, isUnlisted };
   } catch (e) {
     console.error(`Failed to get videoDetails from`, jsonArray);
   }
@@ -180,7 +180,7 @@ async function main() {
 
   window.videos = {
     data: videos,
-    print(sortKey = "viewCount") {
+    print(sortKey = "isUnlisted") {
       return print(this.data, sortKey)
     }
   };
